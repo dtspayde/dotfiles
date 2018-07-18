@@ -1,0 +1,33 @@
+snippet address "Address for Letter Class"
+\doifmode{$1}{
+\addressee{
+$0
+}
+\doifnotmode{envelope}{\letteropening{${2:To Whom It May Concern:}}}
+} % $1
+endsnippet
+
+snippet letter "Letter Template (Hendrix Letterhead)"
+\doifmodeelse{envelope}
+{\usemodule[t-envelope-hendrix]}
+{\doifmodeelse{plainpaper}
+{\usemodule[t-lh-hendrix-plainpaper]}
+{\usemodule[t-lh-hendrix-preprinted]}
+}
+
+\starttext
+
+\doifnotmode{envelope}{\date}
+
+% Put Addresses Here
+
+
+\doifnotmode{envelope}{
+\letterbody{
+$0
+}
+
+\letterclosing{Regards,}
+}
+\stoptext
+endsnippet

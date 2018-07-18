@@ -1,0 +1,102 @@
+# Added by termtile (https://github.com/apaszke/termtile)
+# alias tl='osascript ~/.termtile/tile.scpt up left'
+# alias ur='osascript ~/.termtile/tile.scpt up right'
+# alias dl='osascript ~/.termtile/tile.scpt down left'
+# alias dr='osascript ~/.termtile/tile.scpt down right'
+# alias ll='osascript ~/.termtile/tile.scpt left'
+# alias rr='osascript ~/.termtile/tile.scpt right'
+# alias up='osascript ~/.termtile/tile.scpt up'
+# alias down='osascript ~/.termtile/tile.scpt down'
+# alias big='osascript ~/.termtile/resize.scpt '
+# alias cen='osascript ~/.termtile/center.scpt '
+# alias max='osascript ~/.termtile/maximize.scpt '
+# alias sn='osascript ~/.termtile/changeScreen.scpt next'
+
+# sshfs aliases
+alias sshfs_nuc_local='mkdir -p /Volumes/Nuclear; sshfs spayde@nuclear-local: /Volumes/Nuclear -o volname=Nuclear -o auto_cache'
+alias sshfs_nuc_remote='mkdir -p /Volumes/Nuclear; sshfs spayde@nuclear.hendrix.edu: /Volumes/Nuclear -o volname=Nuclear -o auto_cache'
+
+alias ssh_jlab='env TERM=xterm-256color ssh -Y login.jlab.org'
+alias ssh_nuc_remote='ssh -Y -L 8000:nuclear.hendrix.edu:80 nuclear-remote.hendrix.edu'
+alias ssh_mysql_cdaql6='ssh -Ct -L 3306:127.0.0.1:3306 login.jlab.org ssh -Ct -L 3306:127.0.0.1:3306 ifarml4.jlab.org ssh -C -L 3306:127.0.0.1:3306 cdaq@cdaql6'
+
+export QWDBADMIN=${HOME}/Software/QwDB_Admin
+export QWANALYSIS=${HOME}/Software/QwAnalysis_trunk
+export TODOTXT_DEFAULT_ACTION=ls
+
+alias t='todotxt -t'
+
+# Needed to get italics working in tmux (https://www.reddit.com/r/vim/comments/24g8r8/italics_in_terminal_vim_and_tmux/)
+# alias tmux='tmux -2'
+# alias tmux='env TERM=tmux-256color tmux -2'
+# alias tmux='env TERM=screen-256color-it tmux -2'
+
+# Start MacViM in terminal mode (not GUI mode)
+alias vim='mvim -v'
+alias vi='mvim -v'
+
+if [[ -r /opt/local/libexec/gnubin/ls ]]; then
+        alias ls="command ls --color"
+fi
+
+alias vitodo='vi -S ~/.vim/sessions/session-todo.vim'
+
+path=(/opt/local/libexec/gnubin $path)
+path=($path ~/Applications/bin)
+# path=(~/.cabal/bin $path)
+# path=(~/Library/Haskell/bin $path)
+path=(~/.local/bin $path)
+
+export EDITOR='vim'
+export VISUAL='mvim'
+bindkey -v
+
+fpath=( "$HOME/.zfunctions" $fpath )
+
+source ~/.zplug/init.zsh
+
+# Let zplug manage itself
+# zplug "zplug/zplug"
+
+# A prompt theme
+# zplug "isqua/bureau"
+zplug "mafredri/zsh-async"
+zplug "sindresorhus/pure"
+zplug "denysdovhan/spaceship-prompt", use:'spaceship.zsh', from:github, as:theme
+zplug 'BrandonRoehl/zsh-clean', use:'clean.zsh', from:github, as:theme
+# e.g., zsh-syntax-highlighting must be loaded
+# after executing compinit command and sourcing other plugins
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# Can manage local plugins
+# zplug "~/.zsh", from:local
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+export SPACESHIP_BATTERY_SHOW='always'
+export SPACESHIP_EXIT_CODE_SHOW='true'
+export SPACESHIP_USER_SHOW='always'
+export SPACESHIP_TIME_SHOW='true'
+
+prompt pure
+
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+zstyle ':completion:*:*:cdr:*:*' menu selection
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':completion:*' recent-dirs-insert both

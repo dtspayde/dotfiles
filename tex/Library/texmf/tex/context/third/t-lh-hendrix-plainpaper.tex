@@ -1,0 +1,103 @@
+\protect
+
+\setuppapersize[letter][letter] % or [letter][letter]; in that case, you'll have to fidget with the dimensions
+
+\setuplayout[header=0.25in, 
+             topspace=1in, % top margin
+             backspace=1in, % left margin
+             height=9.5in, % height=header+text+footer
+             footer=0.75in,
+             width=6.5in] % width of text area
+
+\enableregime[utf] % or whatever you prefer
+
+\setupcolors[state=start] % in case you want any colored output
+
+\mainlanguage[en] % or whatever you prefer
+
+\starttypescript [Hendrix]
+	\definetypeface [MyHendrix][rm][Xserif][Baskerville]
+	\definetypeface [MyHendrix][ss][Xsans][Trebuchet MS]
+\stoptypescript
+
+\usetypescript[Hendrix][uc]
+
+\setupbodyfont[MyHendrix,12pt] % this is the small bodyfont for the letterhead; we'll change to a bigger size for the actual letter later
+%\setupbodyfont[modern,12pt] % this is the small bodyfont for the letterhead; we'll change to a bigger size for the actual letter later
+
+\setuppagenumbering[state=stop] 
+
+%	\blank[line]%
+%	PHONE:  501-450-1251  FAX:  501-450-3829 \\%
+%	EMAIL:  spayde@hendrix.edu  WEB:  www.hendrix.edu][]
+
+\setupexternalfigures[directory={/Users/spayde/Library/texmf/tex/context/third, /Users/spayde/Library/texmf/tex/graphics}]
+\useexternalfigure[hendrix_logo][HENDRIX_LOGO_158][scale=510]
+\useexternalfigure[signature][spayde_signature][height=0.5in]
+
+\def\HendrixHeader%
+	{\cbox
+		{\setupframed[align=middle, frame=off]%
+		 \vbox to 0.375in{}%
+		 \framed{
+		\externalfigure[hendrix_logo] \\ 
+%		 {\switchtobodyfont[10pt, sans] \kap{c o l l e g e}} \\
+		{\switchtobodyfont[10pt, sans, MyMSTrebuchet] C O L L E G E} \\
+		{\switchtobodyfont[9pt]
+		\cbox{
+		\blank[line]
+		1600 Washington Avenue \\
+		Conway, Arkansas 72032-3080
+		}
+		}
+		}
+		}
+	}
+
+\def\HendrixFooter%
+	{\cbox{\switchtobodyfont[9pt]
+		{\switchtobodyfont[8pt, sans, MyMSTrebuchet] DEPARTMENT OF PHYSICS} \\
+		\blank[line]
+		{\switchtobodyfont[8pt, sans] PHONE:} 501-450-1251 \emspace
+%		{\switchtobodyfont[8pt] \ss PHONE:} 501-450-1251
+		{\switchtobodyfont[8pt, sans] FAX:} 501-450-3829 \\
+		{\switchtobodyfont[8pt, sans] EMAIL:} spayde@hendrix.edu
+\emspace
+		{\switchtobodyfont[8pt, sans] WEB:} www.hendrix.edu
+%	 	FAX: 501-450-3829  \\
+%		EMAIL: spayde@hendrix.edu 	  WEB: www.hendrix.edu
+	}
+	}
+
+
+\definelogo
+	[hendrix_header][top][middle]
+	[command=\HendrixHeader]
+
+\definelogo
+	[hendrix_footer][footer][middle]
+	[command=\HendrixFooter, state=start]
+
+%\setupfooter[text][state=normal, style=normal]
+
+%\setupfootertexts[\placelogos[hendrix_footer]]
+
+\long\def\date{\strut\placelogos[hendrix_header, hendrix_footer]\blank[4*line]\switchtobodyfont[12pt]\setupwhitespace[none]\currentdate[day, month, year]}
+
+\long\def\addressee#1{\blank[line]#1} % Defines field for receiver's address and places it at right position.
+%\long\def\addressee#1{\strut\blank[23*medium]\switchtobodyfont[11pt]\setupwhitespace[none]#1} % Defines field for receiver's address and places it at right position.
+
+\long\def\lettersubject#1{\blank[line]{\bf Re: #1}} % Subject line, in bold face.
+
+\long\def\letteropening#1{\blank[line]#1} % opening\ldots
+
+\long\def\letterbody#1{\blank[line]\setupwhitespace[medium]#1} % the main body
+
+%\long\def\letterclosing#1{\blank[line]#1\blank[2*line]Damon T. Spayde \crlf Assistant Professor of Physics} % and the closing formula
+%\long\def\letterclosing#1{\blank[line]#1\blank[2*line]\externalfigure[signature]Damon T. Spayde \crlf Dr. Brad P. Baltz and Rev. William B. Smith Odyssey Associate Professor of Physics\crlf Chair, Department of Physics} % and the closing formula
+% \long\def\letterclosing#1{\blank[line]#1 \crlf \externalfigure[signature] \crlf Damon T. Spayde \crlf Dr. Brad P. Baltz and Rev. William B. Smith Odyssey Associate Professor of Physics\crlf Chair, Department of Physics} % and the closing formula
+\long\def\letterclosing#1{\blank[line]#1 \crlf \externalfigure[signature] \crlf Damon T. Spayde \crlf Associate Professor of Physics} % and the closing formula
+
+%\setupalign[right] % I prefer letters with a ragged right, but you don't have to\ldots
+
+\unprotect

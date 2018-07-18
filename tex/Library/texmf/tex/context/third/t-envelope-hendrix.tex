@@ -1,0 +1,49 @@
+%%%
+%%% Module for generating envelopes on Hendrix stationery
+%%%
+
+\protect
+
+%%% Set up envelope layout
+
+\definepapersize[envelope_n10][width=4.125in, height=9.5in]
+\setuppapersize[envelope_n10][envelope_n10]
+%\setuppapersize[DL][DL]
+\setuppagenumbering[state=stop]
+
+\setuplayout[header=0in, 
+             topspace=1.5in, % top margin
+             backspace=1.25in, % left margin
+%             backspace=0.625in, % left margin
+             height=7.575in, % height=header+text+footer
+%             height=5.875in, % height=header+text+footer
+             footer=3in,
+%             footer=2in,
+             width=3.625in] % width of text area
+
+%%% Load in Hendrix fonts
+%%% Note:  these are not TeX standard fonts!
+
+\starttypescript [Hendrix]
+	\definetypeface [MyHendrix][rm][Xserif][Baskerville]
+	% \definetypeface [MyHendrix][rm][Xserif][Garamond]
+	\definetypeface [MyHendrix][ss][Xsans][Trebuchet MS]
+\stoptypescript
+
+\usetypescript[Hendrix]
+
+\setupbodyfont[MyHendrix,14.4pt] 
+
+\setuprotate[rotation=90]
+
+%%% Get sender's name stuck in just the right place
+
+\setupfootertexts
+	[text]
+	[\rotate{\switchtobodyfont[10pt]Prof. Damon T. Spayde}]
+	[]
+
+\long\def\addressee#1{\rotate{\vbox{\vbox to 0.5in{}#1}}} % Defines field for receiver's address and places it at right position.
+%\long\def\addressee#1{\rotate{\vbox{\vbox to 1in{}#1}}} % Defines field for receiver's address and places it at right position.
+
+\unprotect

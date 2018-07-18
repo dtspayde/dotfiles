@@ -47,7 +47,7 @@ path=($path ~/Applications/bin)
 # path=(~/Library/Haskell/bin $path)
 path=(~/.local/bin $path)
 
-export EDITOR='vim'
+export EDITOR='mvim -v'
 export VISUAL='mvim'
 bindkey -v
 

@@ -2,7 +2,7 @@
 	name = Damon Spayde
 	email = spayde@hendrix.edu
 [core]
-	editor = vim
+	editor = mvim -v
 	excludesfile = /Users/spayde/.gitignore_global
 [push]
 	default = simple

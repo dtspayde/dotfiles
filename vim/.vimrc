@@ -60,6 +60,7 @@ Plug 'mhinz/vim-startify'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -200,6 +201,10 @@ if (has("termguicolors"))
         let g:gruvbox_italic=1
         let g:two_firewatch_italics=1
         let g:pencil_terminal_italics = 1
+        let g:nord_italic = 1
+        let g:nord_underline = 1
+        let g:nord_italic_comments = 1
+        let g:nord_uniform_status_lines = 1
         colo onedark
 else
         colo base16-eighties
@@ -324,8 +329,16 @@ function! LetterOpen()
         execute "!open " . l:pdffile
 endfunction
 
+function! PDFOpen()
+        let l:pdffile = substitute(bufname('%'), ".md$", ".pdf", "")
+        echom l:pdffile
+
+        execute "!open " . l:pdffile
+endfunction
+
 command! -nargs=* LetterCompile call LetterCompile(<f-args>) 
 command! -nargs=0 LetterOpen call LetterOpen()
+command! -nargs=0 PDFOpen call PDFOpen()
  
 " Stop prompting to save default editing session
 let g:session_autosave = 'no'

@@ -330,7 +330,7 @@ function! LetterOpen()
 endfunction
 
 function! PDFOpen()
-        let l:pdffile = substitute(bufname('%'), ".md$", ".pdf", "")
+        let l:pdffile = substitute(bufname('%'), '.md$\|.tex$', ".pdf", "")
         echom l:pdffile
 
         execute "!open " . l:pdffile

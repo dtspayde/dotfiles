@@ -3708,3 +3708,24 @@ zrclocal
 # Local variables:
 # mode: sh
 # End:
+
+### Added by Zplugin's installer
+source '/Users/spayde/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
+
+zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+zplugin light denysdovhan/spaceship-prompt
+zplugin light BrandonRoehl/zsh-clean
+# zplugin light isqua/bureau
+zplugin light zsh-users/zsh-history-substring-search
+zplugin light zsh-users/zsh-completions
+zplugin light zsh-users/zsh-syntax-highlighting
+
+export SPACESHIP_BATTERY_SHOW='always'
+export SPACESHIP_EXIT_CODE_SHOW='true'
+export SPACESHIP_USER_SHOW='always'
+export SPACESHIP_TIME_SHOW='true'
+
+prompt pure

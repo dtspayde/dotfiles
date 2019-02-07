@@ -51,49 +51,6 @@ export EDITOR='mvim -v'
 export VISUAL='mvim'
 bindkey -v
 
-fpath=( "$HOME/.zfunctions" $fpath )
-
-source ~/.zplug/init.zsh
-
-# Let zplug manage itself
-# zplug "zplug/zplug"
-
-# A prompt theme
-# zplug "isqua/bureau"
-zplug "mafredri/zsh-async"
-zplug "sindresorhus/pure"
-zplug "denysdovhan/spaceship-prompt", use:'spaceship.zsh', from:github, as:theme
-zplug 'BrandonRoehl/zsh-clean', use:'clean.zsh', from:github, as:theme
-# e.g., zsh-syntax-highlighting must be loaded
-# after executing compinit command and sourcing other plugins
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# zplug "zsh-users/zsh-syntax-highlighting", nice:10
-
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-# Can manage local plugins
-# zplug "~/.zsh", from:local
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
-
-export SPACESHIP_BATTERY_SHOW='always'
-export SPACESHIP_EXIT_CODE_SHOW='true'
-export SPACESHIP_USER_SHOW='always'
-export SPACESHIP_TIME_SHOW='true'
-
-prompt pure
-
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 

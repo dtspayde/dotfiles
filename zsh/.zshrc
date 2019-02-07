@@ -3722,6 +3722,7 @@ zplugin light BrandonRoehl/zsh-clean
 zplugin light zsh-users/zsh-history-substring-search
 zplugin light zsh-users/zsh-completions
 zplugin light zsh-users/zsh-syntax-highlighting
+zplugin light zdharma/fast-syntax-highlighting
 
 export SPACESHIP_BATTERY_SHOW='always'
 export SPACESHIP_EXIT_CODE_SHOW='true'

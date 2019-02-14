@@ -46,6 +46,7 @@ path=($path ~/Applications/bin)
 # path=(~/.cabal/bin $path)
 # path=(~/Library/Haskell/bin $path)
 path=(~/.local/bin $path)
+path=(~/Library/Python/3.6/bin $path)
 
 export EDITOR='mvim -v'
 export VISUAL='mvim'
@@ -65,18 +66,24 @@ autoload -Uz _zplugin
 ### End of Zplugin's installer chunk
 
 zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
-zplugin light denysdovhan/spaceship-prompt
+# zplugin ice wait'0'! atload'prompt spaceship'
+zplugin load denysdovhan/spaceship-prompt
 zplugin light BrandonRoehl/zsh-clean
 # zplugin light isqua/bureau
+zplugin ice wait'0'
 zplugin light zsh-users/zsh-history-substring-search
+zplugin ice wait'0'
 zplugin light zsh-users/zsh-completions
-zplugin light zsh-users/zsh-syntax-highlighting
+# zplugin light zsh-users/zsh-syntax-highlighting
+zplugin ice wait'0'
 zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait'0' atload'_zsh_autosuggest_start'
+zplugin load zsh-users/zsh-autosuggestions
 
 export SPACESHIP_BATTERY_SHOW='always'
 export SPACESHIP_EXIT_CODE_SHOW='true'
 export SPACESHIP_USER_SHOW='always'
 export SPACESHIP_TIME_SHOW='true'
 
-prompt pure
+prompt spaceship
 

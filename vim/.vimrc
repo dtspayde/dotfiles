@@ -360,3 +360,6 @@ set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/P
 let g:python_highlight_all = 1
 """ Turn on docstring previews in folds 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview = 1
+
+""" Remap space in Normal mode to za to toggle open/close fold
+nnoremap <space> za

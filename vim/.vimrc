@@ -350,3 +350,8 @@ let g:session_autosave = 'no'
 " terminal version of MacVim
 " set pythondll=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
 set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
+
+""" Turn on all syntax highlighting options in 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+""" Turn on docstring previews in folds 'tmhedberg/SimpylFold'
+let g:SimpylFold_docstring_preview = 1

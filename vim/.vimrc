@@ -67,6 +67,8 @@ Plug 'tmhedberg/SimpylFold'
 
 Plug '/opt/local/share/fzf/vim'
 Plug 'junegunn/fzf.vim'
+Plug 'nvie/vim-flake8'
+Plug 'w0rp/ale'
 
 call plug#end()
 

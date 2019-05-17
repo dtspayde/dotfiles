@@ -65,6 +65,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-python/python-syntax'
 Plug 'tmhedberg/SimpylFold'
 
+Plug '/opt/local/share/fzf/vim'
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " allow backspacing over everything in insert mode

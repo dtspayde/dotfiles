@@ -87,3 +87,8 @@ export SPACESHIP_TIME_SHOW='true'
 
 prompt spaceship
 
+source /opt/local/share/fzf/shell/key-bindings.zsh
+source /opt/local/share/zsh/site-functions/fzf
+export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+

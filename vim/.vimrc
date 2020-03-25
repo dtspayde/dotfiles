@@ -65,7 +65,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-python/python-syntax'
 Plug 'tmhedberg/SimpylFold'
 
-Plug '/opt/local/share/fzf/vim'
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'nvie/vim-flake8'
 Plug 'w0rp/ale'

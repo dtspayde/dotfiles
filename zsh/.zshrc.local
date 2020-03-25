@@ -41,7 +41,8 @@ fi
 
 alias vitodo='vi -S ~/.vim/sessions/session-todo.vim'
 
-path=(/opt/local/libexec/gnubin $path)
+path=(/usr/local/bin $path)
+# path=(/opt/local/libexec/gnubin $path)
 path=($path ~/Applications/bin)
 # path=(~/.cabal/bin $path)
 # path=(~/Library/Haskell/bin $path)
@@ -87,8 +88,10 @@ export SPACESHIP_TIME_SHOW='true'
 
 prompt spaceship
 
-source /opt/local/share/fzf/shell/key-bindings.zsh
-source /opt/local/share/zsh/site-functions/fzf
-export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# source /usr/local/opt/share/fzf/shell/key-bindings.zsh
+# source /opt/local/share/zsh/site-functions/fzf
+# export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+export HOMEBREW_GITHUB_API_TOKEN=b84991c9aaea165a6533d69514592f34de6d7f05

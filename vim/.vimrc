@@ -309,7 +309,7 @@ set joinspaces
 set cpoptions+=J
 
 " New splits (with focus) open to right or bottom
-set splitright
+" set splitright
 set splitbelow
 
 " function! TexExec(mode, paperformat)

@@ -60,26 +60,43 @@ zstyle ':completion:*:*:cdr:*:*' menu selection
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':completion:*' recent-dirs-insert both
 
-### Added by Zplugin's installer
-source '/Users/spayde/.zplugin/bin/zplugin.zsh'
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin's installer chunk
 
-zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
-# zplugin ice wait'0'! atload'prompt spaceship'
-zplugin load denysdovhan/spaceship-prompt
-zplugin light BrandonRoehl/zsh-clean
-# zplugin light isqua/bureau
-zplugin ice wait'0'
-zplugin light zsh-users/zsh-history-substring-search
-zplugin ice wait'0'
-zplugin light zsh-users/zsh-completions
-# zplugin light zsh-users/zsh-syntax-highlighting
-zplugin ice wait'0'
-zplugin light zdharma/fast-syntax-highlighting
-zplugin ice wait'0' atload'_zsh_autosuggest_start'
-zplugin load zsh-users/zsh-autosuggestions
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# ### Added by Zplugin's installer
+# source '/Users/spayde/.zplugin/bin/zplugin.zsh'
+# autoload -Uz _zplugin
+# (( ${+_comps} )) && _comps[zplugin]=_zplugin
+# ### End of Zplugin's installer chunk
+
+zinit ice pick"async.zsh" src"pure.zsh"; zinit light sindresorhus/pure
+zinit add-fpath sindresorhus/pure
+# zinit ice wait'0'! atload'prompt spaceship'
+zinit light denysdovhan/spaceship-prompt
+zinit add-fpath denysdovhan/spaceship-prompt
+zinit light BrandonRoehl/zsh-clean
+# zinit light isqua/bureau
+zinit ice wait'0'
+zinit light zsh-users/zsh-history-substring-search
+zinit ice wait'0'
+zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait'0'
+zinit light zdharma/fast-syntax-highlighting
+zinit ice wait'0' atload'_zsh_autosuggest_start'
+zinit load zsh-users/zsh-autosuggestions
 
 export SPACESHIP_BATTERY_SHOW='always'
 export SPACESHIP_EXIT_CODE_SHOW='true'
@@ -94,4 +111,6 @@ prompt spaceship
 # export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export HOMEBREW_GITHUB_API_TOKEN=b84991c9aaea165a6533d69514592f34de6d7f05
+if [ -f ~/.zshrc.private ]; then
+    source ~/.zshrc.private
+fi

@@ -7,6 +7,13 @@ source $VIMRUNTIME/defaults.vim
 " set nocompatible
 
 "Use vim-plug (junegunn/vim-plug) for package management
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
@@ -354,7 +361,8 @@ let g:session_autosave = 'no'
 " Added on 7/6/2018 to fix problems with UltiSnip not loading properly in
 " terminal version of MacVim
 " set pythondll=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
-set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
+set pythonthreedll=/usr/local/Frameworks/Python.framework/Python
+"/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
 
 """ Turn on all syntax highlighting options in 'vim-python/python-syntax'
 let g:python_highlight_all = 1

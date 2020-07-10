@@ -49,6 +49,13 @@ path=($path ~/Applications/bin)
 path=(~/.local/bin $path)
 path=(~/Library/Python/3.6/bin $path)
 
+alias exa="command exa --classify"
+alias exal="command exa --classify --long --header --git --group"
+alias exaa="command exa --classify --long --header --git --group --all"
+
+alias ez="command vim ~/.zshrc.local"
+alias sz="command source ~/.zshrc.local"
+
 export EDITOR='mvim -v'
 export VISUAL='mvim'
 bindkey -v

@@ -60,6 +60,9 @@ bindkey -v
 alias ez="command $EDITOR ~/.zshrc.local"
 alias sz="source ~/.zshrc.local"
 
+alias -s md=$EDITOR
+alias -s txt=$EDITOR
+
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 

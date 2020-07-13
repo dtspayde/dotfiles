@@ -63,6 +63,12 @@ alias sz="source ~/.zshrc.local"
 alias -s md=$EDITOR
 alias -s txt=$EDITOR
 
+if [[ $OSTYPE==darwin* ]]; then
+    alias preview="open -a /System/Applications/Preview.app"
+fi
+
+alias -s pdf=preview
+
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 

@@ -16,7 +16,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -24,6 +24,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-obsession'
 " Plug 'gerw/vim-latex-suite'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -33,7 +34,7 @@ Plug 'freitass/todo.txt-vim'
 " Plug 'vim-scripts/todo-txt.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'moll/vim-bbye'
-Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
 Plug 'reedes/vim-pencil'
 Plug 'romainl/Apprentice'
@@ -63,7 +64,7 @@ Plug 'rakr/vim-two-firewatch'
 Plug 'wellle/targets.vim'
 " Plug 'vim-scripts/Latex-Text-Formatter'
 " Plug 'edkolev/tmuxline.vim'
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
@@ -174,6 +175,12 @@ let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#whitespace#enabled = 0
 
+let g:airline#extensions#obsession#enabled = 1
+
+let g:airline#extensions#vimtex#enabled = 1
+
+let g:airline#extensions#virtualenv#enabled = 1
+
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#buffer_idx_mode = 1
 " nmap <leader>1 <Plug>AirlineSelectTab1
@@ -186,7 +193,7 @@ let g:airline#extensions#whitespace#enabled = 0
 " nmap <leader>8 <Plug>AirlineSelectTab8
 " nmap <leader>9 <Plug>AirlineSelectTab9
 
-let g:airline_section_x = '%{PencilMode()}'
+" let g:airline_section_x = '%{PencilMode()}'
 
 " Mappings for easy-align
 vmap <Enter> <Plug>(EasyAlign)
@@ -240,7 +247,7 @@ set t_ZR=[23m
 " LaTeX-Suite settings
 " let g:Tex_CompileRule_pdf = 'xelatex -interaction=nonstopmode -file-line-error $*'
 
-let g:startify_session_dir = '~/.vim/sessions'
+" let g:startify_session_dir = '~/.vim/sessions'
 
 " Control what things are concealed in TeX documents
 " a = accents/ligatures

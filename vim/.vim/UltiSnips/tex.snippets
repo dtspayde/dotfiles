@@ -37,13 +37,44 @@ snippet template420 "PHYS 420 Slide Deck Template"
 
 \begin{document}
 
+\begin{frame}[plain,t]
+  
+  \titlepage
+
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{${4:Structure of Presentation}}
+  \framesubtitle{${5:The Roadmap}}
+  
+  \tableofcontents
+\end{frame}
+
+\begin{frame}[t, label=fr_assignments]
+  \frametitle{Introduction}
+
+  \begin{itemize}
+    \item This lecture covers 
+    \item Assignments
+    \begin{itemize}[<+->]
+      \item Read Section 
+      \item Review ``Real Physics'' YouTube videos:
+        \begin{itemize}
+          \item Chapter NNN Playlist:  \url{https://bit.ly/2Va5jiP}
+          \item Only need to review videos associated with section NNN.
+        \end{itemize}
+      \item Homework Assignment \#NNN on Moodle (\url{https://moodle.hendrix.edu})
+    \end{itemize}
+  \end{itemize}big
+\end{frame}
+  
 $0
 
 \end{document}
 endsnippet
 
 snippet block "Beamer Block Environment"
-\begin{block}{$1}<${2:1-}>
+\begin{block}{$1}<${2:+-}>
   $0
 \end{block}
 endsnippet

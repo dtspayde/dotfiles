@@ -156,13 +156,20 @@ set cursorline  " Highlight line containing cursor
 " set cursorcolumn " Highlight column containing cursor
 
 
+function! TodoKeyWords()
+  augroup todo_keywords
+    " autocmd!
+    autocmd BufEnter <buffer> setlocal iskeyword+=@-@
+  augroup End
+endfunction
+
 augroup pencil
   autocmd!
   " autocmd FileType text call pencil#init()
   autocmd FileType text call pencil#init({'wrap': 'soft'})
   autocmd FileType tex  call pencil#init({'wrap': 'soft'})
   autocmd FileType context  call pencil#init({'wrap': 'soft'})
-  autocmd FileType todo call pencil#init({'wrap': 'soft'})
+  autocmd FileType todo call pencil#init({'wrap': 'soft'}) | call TodoKeyWords()
   " autocmd FileType pandoc call pencil#init({'wrap': 'soft'})
 augroup End
 

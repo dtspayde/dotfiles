@@ -2,11 +2,7 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-" set nocompatible
-
-"Use vim-plug (junegunn/vim-plug) for package management
+" Plugin Management (junegunn/vim-plug)  ---------------------------- {{{1
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -16,7 +12,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" Plug 'altercation/vim-colors-solarized'
+" Plugin List ------------------------------------------------------- {{{2
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -25,17 +21,12 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-obsession'
-" Plug 'gerw/vim-latex-suite'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'kien/ctrlp.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'freitass/todo.txt-vim'
-" Plug 'vim-scripts/todo-txt.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'moll/vim-bbye'
-" Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-session'
 Plug 'reedes/vim-pencil'
 Plug 'romainl/Apprentice'
 Plug 'reedes/vim-colors-pencil'
@@ -51,20 +42,13 @@ Plug 'AlessandroYorba/Alduin'
 Plug 'Konfekt/FastFold'
 Plug 'chriskempson/base16-vim'
 Plug 'whatyouhide/vim-gotham'
-" Plug 'dhruvasagar/vim-table-mode'
-" Plug 'tpope/vim-projectionist'
-" Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-janah'
-"Plug 'vim-scripts/ShowMarks'
 Plug 'chriskempson/base16-vim'
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-two-firewatch'
 Plug 'wellle/targets.vim'
-" Plug 'vim-scripts/Latex-Text-Formatter'
-" Plug 'edkolev/tmuxline.vim'
-" Plug 'mhinz/vim-startify'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
@@ -80,82 +64,95 @@ Plug 'w0rp/ale'
 
 call plug#end()
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Basic editor settings ---------------------------- {{{1
 
-set nobackup		" do not keep a backup file, use versions instead
+" Editing behavior settings ------------------------ {{{2
+"
+set backspace=indent,eol,start | " Allow backspacing over everything in insert mode
+set gdefault        | " Substitutes globally on a line by default (no need for \g)
+set expandtab       | " insert spaces, not tabs, when Tab pressed
+set autoindent      | " Use indent of previous line
+let mapleader = ","       " Make ',' the global leader key
+let maplocalleader = "\\" " Make '\' the local leader key
+" Insert two spaces after closing punctuation when doing a 'join'
+set joinspaces      | " insert two spaces after punctuation when joining lines
+set cpoptions+=J    | " insert two spaces only after period when joining lines
 
-set noswapfile    " do not keep a swap file
+" UI/UX settings ------------------------------------- {{{2
+"
+set history=50      | " keep 50 lines of command line history
+set showmatch       | " Show matching brackets when text indicator is over them
+set cmdheight=1     | " Command bar height
+set ruler           | " show the cursor position all the time
+set showcmd         | " display incomplete commands
+set scrolloff=3     | " Keep 3 lines between top/bottom of window and cursor
+set number          | " Number each line of the file
+" set relativenumber | " Number each line relative to current
+set laststatus=2    | " Make sure the status line is always on
+set showmode        | " Show mode message in command line
+set hidden          | " Hide buffers when abandoned
+set visualbell      | " Use visual signal rather than beeping
+set cursorline      | " Highlight line containing cursor
+" set cursorcolumn  | " Highlight column containing cursor
+set wildmenu        | " Display command-line completion options
+set wildmode=list:longest | " Completion mode to use for matching
+syntax enable         " syntax highlighting
+set foldlevel=1     | " Automatically open top-most fold
+set foldcolumn=4    | " Show 4 columns worth of folding information
 
-" Store backup files (*~) just about anywhere but the working directory.
-set backupdir=./.backup,~/.tmp,.,/tmp
+set clipboard=unnamed | " Setting to enable copy/paste to system clipboard on Mac?
+"
+" set splitright     | " Focus in vertical splits goes to right pane
+set splitbelow      | " Focus in horizontal splits goes to bottom pane
 
-set history=50		" keep 50 lines of command line history
+" Enable 24 bit color in the terminal
+"" let t_8f="\e[38;2;%ld;%ld;%ldm"
+"" let t_8b="\e[48;2;%ld;%ld;%ldm"
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+" set termguicolors
 
-set cmdheight=1   " Command bar height
+if (has("termguicolors"))
+        set termguicolors
+        let g:onedark_terminal_italics=1
+        let g:gruvbox_italic=1
+        let g:two_firewatch_italics=1
+        let g:pencil_terminal_italics = 1
+        let g:nord_italic = 1
+        let g:nord_underline = 1
+        let g:nord_italic_comments = 1
+        let g:nord_uniform_status_lines = 1
+        colo onedark
+else
+        colo base16-eighties
+endif
 
-set ruler		" show the cursor position all the time
-
-set showcmd		" display incomplete commands
-
-set incsearch		" do incremental searching
-
-set hlsearch    " highlight search terms
-
-set ignorecase          " Ignore case during searches
-set smartcase
-
-set gdefault    " Substitutes globally on a line by default (no need for \g)
-
-set showmatch   " Show matching brackets when text indicator is over them
-
-" Set <Leader> to ,
-let mapleader = ","
-" Mapping <leader> to - conflicts with vim-vinegar quick directory access
-" let mapleader = "-"
-" Set <LocalLeader> to \
-let maplocalleader = "\\"
-
-syntax enable   " syntax highlighting
-
-set autoindent		" always set autoindenting on
-
-set scrolloff=3 " Keep 3 lines between top/bottom of window and cursor
+" Enable italic fonts in terminal vim (see
+" https://www.reddit.com/r/vim/comments/24g8r8/italics_in_terminal_vim_and_tmux/)
+set t_ZH=[3m
+set t_ZR=[23m
 
 
-" Following are not compatible with lbr option
-" set list
-" set listchars=tab:▸\ ,eol:¬
+" Search settings ------------------------------------ {{{2
+"
+set incsearch       | " do incremental searching
+set hlsearch        | " highlight search terms
+set ignorecase      | " Ignore case during searches
+set smartcase       | " Case-sensitive search if search pattern contains upper case
 
-" Make sure lines get broken eventually.
-" set textwidth=78
+" Backup/Swap settings ------------------------------------ {{{2
+"
+set backupdir=./.backup,~/.tmp,.,/tmp | " Store backup files (*~) just about anywhere but the working directory.
+set nobackup        | " do not keep a backup file, use versions instead
+set noswapfile      | " do not keep a swap file
 
-" Enable spell checker
+" Spellchecker settings ------------------------------------ {{{2
 set spell spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 
-" Enable line numbering
-set number
-" set relativenumber 
+" Plugin settings ---------------------------- {{{1
 
-" Enable permanent status line with more information
-set laststatus=2
-" set statusline=%f\ %h%m%r%y%=%-14.(%l,%c%V%)%o\ %P
-"set statusline=%f\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
-
-set showmode  " Show mode message in command line
-
-set hidden    " Hide buffers when abandoned
-
-set wildmenu  " Display command-line completion options
-set wildmode=list:longest
-
-set visualbell
-
-set cursorline  " Highlight line containing cursor
-" set cursorcolumn " Highlight column containing cursor
-
-
+" vim-pencil settings ---------------------------- {{{2
 function! TodoKeyWords()
   augroup todo_keywords
     " autocmd!
@@ -176,6 +173,7 @@ augroup End
 " Default conceallevel for vim-pencil is 3
 let g:pencil#conceallevel = 2
 
+" vim-airline settings ---------------------------- {{{2
 "" Customizations for airline
 " Need fonts from powerline-fonts github repo
 let g:airline_powerline_fonts = 1
@@ -202,59 +200,37 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " let g:airline_section_x = '%{PencilMode()}'
 
+" vim-easy-align settings ---------------------------- {{{2
 " Mappings for easy-align
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Set tabbing behavior globally
-" Never insert tab characters, insert spaces instead
-set expandtab
+" Miscellaneous settings ---------------------------- {{{2
+
+let g:UltiSnipsEditSplit="vertical"
 "
-" All tabs default to two spaces
-" set tabstop=2
-" set shiftwidth=2
-" set softtabstop=2
-
-" set lbr         " Break long lines without inserting \crlf
-
-" Enable 24 bit color in the terminal
-"" let t_8f="\e[38;2;%ld;%ld;%ldm"
-"" let t_8b="\e[48;2;%ld;%ld;%ldm"
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8b=[48;2;%lu;%lu;%lum
-" set termguicolors
-
-if (has("termguicolors"))
-        set termguicolors
-        let g:onedark_terminal_italics=1
-        let g:gruvbox_italic=1
-        let g:two_firewatch_italics=1
-        let g:pencil_terminal_italics = 1
-        let g:nord_italic = 1
-        let g:nord_underline = 1
-        let g:nord_italic_comments = 1
-        let g:nord_uniform_status_lines = 1
-        colo onedark
-else
-        colo base16-eighties
-endif
+" Enable vim-pandoc integration with other plugins
+let g:pandoc#after#modules#enabled = ["ultisnips"]
+" let g:pandoc#after#modules#enabled = ["ultisnips", "vim-table-mode"]
+" Added on 7/6/2018 to fix problems with UltiSnip not loading properly in
+" terminal version of MacVim
+" set pythondll=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
+set pythonthreedll=/usr/local/Frameworks/Python.framework/Python
+"/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
 
 
-" set t_Co=256
-" colo base16-eighties
-" set background=dark
-" let g:solarized_termcolors=256
-" set background=light
+" This may break line motion in TeX and Pandoc.  Issues with pencil plugin?
+" nnoremap <silent> <expr> k (v:count ==0 ? 'gk' : 'k')
+" nnoremap <silent> <expr> j (v:count ==0 ? 'gj' : 'j')
 
-" Enable italic fonts in terminal vim (see
-" https://www.reddit.com/r/vim/comments/24g8r8/italics_in_terminal_vim_and_tmux/)
-set t_ZH=[3m
-set t_ZR=[23m
+" Load the matchit plugin that comes with VIM
+source $VIMRUNTIME/macros/matchit.vim
 
-" LaTeX-Suite settings
-" let g:Tex_CompileRule_pdf = 'xelatex -interaction=nonstopmode -file-line-error $*'
 
-" let g:startify_session_dir = '~/.vim/sessions'
+" Filetype settings ---------------------------- {{{1
+
+" TeX/LaTeX settings ---------------------------- {{{2
+"
 
 " Control what things are concealed in TeX documents
 " a = accents/ligatures
@@ -264,7 +240,8 @@ set t_ZR=[23m
 " s superscripts/subscripts
 " Much heralded Greek substitution is not working.  Needs further research.
 " let g:tex_conceal='adm'
-let g:tex_conceal='abdgms'
+" let g:tex_conceal='abdgms'
+let g:tex_conceal='abdgm'
 
 " Enable folding in VimTex plugin
 let g:vimtex_fold_enabled=1
@@ -273,28 +250,10 @@ let g:vimtex_fold_enabled=1
 let g:vimtex_latexmk_continuous=0
 let g:vimtex_compiler_latexmk = {'background' : 0, 'continuous' : 0}
 
-" Setting to enable copy/paste to system clipboard on Mac?
-set clipboard=unnamed
-
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsForwardTrigger="<c-f>"
-" let g:UltiSnipsBackwardTrigger="<c-b>"
-
-let g:UltiSnipsEditSplit="vertical"
-
 " Change default TeX flavor for TeX files to LaTeX
 let g:tex_flavor="latex"
 
-" Automatically open top-most fold
-set foldlevel=1
-
-" Show 4 columns worth of folding information
-set foldcolumn=4
-
-" Enable vim-pandoc integration with other plugins
-let g:pandoc#after#modules#enabled = ["ultisnips"]
-" let g:pandoc#after#modules#enabled = ["ultisnips", "vim-table-mode"]
-
+" C++ settings ---------------------------------- {{{2
 
 " Plug 'octol/vim-cpp-enhanced-highlight' customizations
 let g:cpp_class_scope_highlight=1
@@ -302,22 +261,52 @@ let g:cpp_member_variable_highlight=1
 let g:cpp_class_decl_highlight=1
 let g:cpp_experimental_template_highlight=1
 
-" This may break line motion in TeX and Pandoc.  Issues with pencil plugin?
-" nnoremap <silent> <expr> k (v:count ==0 ? 'gk' : 'k')
-" nnoremap <silent> <expr> j (v:count ==0 ? 'gj' : 'j')
+augroup filetype_cpp
+  autocmd!
+  autocmd FileType cpp set expandtab | set shiftwidth=2 | set softtabstop=2 | set textwidth=80 | set fo+=tcj
+augroup END
 
-" Load the matchit plugin that comes with VIM
-so $VIMRUNTIME/macros/matchit.vim
+" Vimscript file settings ---------------------------- {{{2
+augroup filetype_vim
+  autocmd!
+  " Use markers to determine folds
+  autocmd FileType vim setlocal foldmethod=marker
+  " Substitute spaces for tabs and insert two spaces per tab
+  autocmd FileType vim setlocal expandtab
+  autocmd FileType vim setlocal tabstop=2
+  autocmd FileType vim setlocal shiftwidth=2
+augroup END
 
-" FileType specific customizations
-autocmd FileType cpp set expandtab | set shiftwidth=2 | set softtabstop=2 | set textwidth=80 | set fo+=tcj
+" Python file settings ---------------------------- {{{2
+""" Turn on all syntax highlighting options in 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+""" Turn on docstring previews in folds 'tmhedberg/SimpylFold'
+let g:SimpylFold_docstring_preview = 1
 
+" Pandoc file settings ---------------------------- {{{2
+augroup pandoc_keywords
+  autocmd!
+  autocmd FileType pandoc setlocal iskeyword+=+
+  autocmd FileType pandoc setlocal iskeyword+=$
+  autocmd FileType pandoc setlocal iskeyword+=%
+  autocmd FileType pandoc setlocal iskeyword+=&
+  autocmd FileType pandoc setlocal iskeyword+=#
+  autocmd FileType pandoc setlocal iskeyword+=-
+  autocmd FileType pandoc setlocal iskeyword+='
+  autocmd FileType pandoc setlocal iskeyword+=@-@
+augroup END
+
+" Personal settings ---------------------------- {{{1
+
+" Mappings ------------------------------------- {{{2
 nnoremap <leader>- ddp
 nnoremap <leader>_ ddkP
 nnoremap <leader><c-u> viWU
-nnoremap <leader><space> :noh<cr>   " Clear out a search
+nnoremap <leader><space> :noh<cr>   | " Clear out a search
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+""" Remap space in Normal mode to za to toggle open/close fold
+nnoremap <space> za
 
 iabbrev dts Damon Theodore Spayde
 iabbrev edts spayde@hendrix.edu
@@ -325,15 +314,8 @@ iabbrev edts spayde@hendrix.edu
 nnoremap H 0
 nnoremap L $
 
-" Insert two spaces after closing punctuation when doing a 'join'
-set joinspaces
-set cpoptions+=J
+" Functions ------------------------------------- {{{2
 
-" New splits (with focus) open to right or bottom
-" set splitright
-set splitbelow
-
-" function! TexExec(mode, paperformat)
 function! LetterCompile(...)
         let l:mode = get(a:, 1, 'generic')
         " echom l:mode
@@ -369,19 +351,25 @@ command! -nargs=* LetterCompile call LetterCompile(<f-args>)
 command! -nargs=0 LetterOpen call LetterOpen()
 command! -nargs=0 PDFOpen call PDFOpen()
  
-" Stop prompting to save default editing session
-let g:session_autosave = 'no'
+"
+" Statusline  ---------------------------- {{{2
+"
+"set statusline=%f   " Path to filename
+"set statusline+=%m
+"set statusline+=%r
+"set statusline+=%h
+"set statusline+=%w
+"set statusline+=%y
+"set statusline+=%q
+"set statusline+=%{fugitive#statusline()}
+""function! GitStatus()
+"  "let [a,m,r] = GitGutterHunkSummary()
+"  "return printf('+%d ~%d -%d', a, m, r)
+""endfunction
+""set statusline+=%{GitStatus()}
+"" set statusline+=%{GitGutterGetHunkSummary()}
 
-" Added on 7/6/2018 to fix problems with UltiSnip not loading properly in
-" terminal version of MacVim
-" set pythondll=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
-set pythonthreedll=/usr/local/Frameworks/Python.framework/Python
-"/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
-
-""" Turn on all syntax highlighting options in 'vim-python/python-syntax'
-let g:python_highlight_all = 1
-""" Turn on docstring previews in folds 'tmhedberg/SimpylFold'
-let g:SimpylFold_docstring_preview = 1
-
-""" Remap space in Normal mode to za to toggle open/close fold
-nnoremap <space> za
+"set statusline+=%=  " Switch to right-side of window
+"set statusline+=Col:\ %3.c\ 
+"set statusline+=Line:\ %4.l/%-4.L
+"set statusline+=%4.P

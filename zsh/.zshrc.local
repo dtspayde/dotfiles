@@ -137,3 +137,9 @@ prompt spaceship
 if [ -f ~/.zshrc.private ]; then
     source ~/.zshrc.private
 fi
+
+# Get X server address on linux machines (WSL2 on Windows 10)
+if [[ $OSTYPE==linux* ]]; then
+    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    export LIBGL_ALWAYS_INDIRECT=1
+fi

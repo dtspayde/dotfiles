@@ -52,8 +52,8 @@ alias exal="command exa --classify --long --header --git --group"
 alias exaa="command exa --classify --long --header --git --group --all"
 
 if [[ $OSTYPE==darwin* ]]; then
-    alias vim='mvim -v'
-    alias vi='mvim -v'
+    # alias vim='mvim -v'
+    # alias vi='mvim -v'
     alias preview="open -a /System/Applications/Preview.app"
     alias -s pdf=preview
     export EDITOR='mvim -v'

@@ -32,14 +32,12 @@ alias t='todotxt -t'
 # alias tmux='env TERM=screen-256color-it tmux -2'
 
 # Start MacViM in terminal mode (not GUI mode)
-alias vim='mvim -v'
-alias vi='mvim -v'
+if [[ $OSTYPE==darwin* ]]; then
+fi
 
 if [[ -r /opt/local/libexec/gnubin/ls ]]; then
         alias ls="command ls --color"
 fi
-
-alias vitodo='vi -S ~/.vim/sessions/session-todo.vim'
 
 path=(/usr/local/bin $path)
 # path=(/opt/local/libexec/gnubin $path)
@@ -53,21 +51,30 @@ alias exa="command exa --classify"
 alias exal="command exa --classify --long --header --git --group"
 alias exaa="command exa --classify --long --header --git --group --all"
 
-export EDITOR='mvim -v'
-export VISUAL='mvim'
+if [[ $OSTYPE==darwin* ]]; then
+    # alias vim='mvim -v'
+    # alias vi='mvim -v'
+    alias preview="open -a /System/Applications/Preview.app"
+    alias -s pdf=preview
+    export EDITOR='mvim -v'
+    export VISUAL='mvim'
+fi
+
+if [[ $OSTYPE==linux* ]]; then
+    alias -s pdf=zathura
+    export EDITOR='vim'
+    export VISUAL='gvim'
+fi
+
 bindkey -v
+
+alias vitodo='vi -S ~/.vim/sessions/session-todo.vim'
 
 alias ez="command $EDITOR ~/.zshrc.local"
 alias sz="source ~/.zshrc.local"
 
 alias -s md=$EDITOR
 alias -s txt=$EDITOR
-
-if [[ $OSTYPE==darwin* ]]; then
-    alias preview="open -a /System/Applications/Preview.app"
-fi
-
-alias -s pdf=preview
 
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
@@ -130,3 +137,11 @@ prompt spaceship
 if [ -f ~/.zshrc.private ]; then
     source ~/.zshrc.private
 fi
+
+# Get X server address on linux machines (WSL2 on Windows 10)
+if [[ $OSTYPE==linux* ]]; then
+    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    export LIBGL_ALWAYS_INDIRECT=1
+    eval `ssh-agent`
+fi
+

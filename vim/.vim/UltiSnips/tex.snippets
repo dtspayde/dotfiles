@@ -87,3 +87,56 @@ snippet columns2e "Beamer:  Two Equal Columns"
 \end{columns}
 endsnippet
 
+snippet beam_fr_item "Beamer:  Frame with Overlaid itemize"
+\begin{frame}[${1:t}]
+  \frametitle{${2}}
+
+  \begin{itemize}[<+->]
+    \item $0
+  \end{itemize}
+\end{frame}
+endsnippet
+
+snippet beam_fr_conclusion "Beamer:  Class Conclusion Frame"
+\begin{frame}[c]
+  \frametitle{Conclusion}
+
+  \begin{center}
+    \Large
+    That's it for today!
+
+    \vspace*{0.5in}
+
+    See you next time.
+
+    \vspace*{0.5in}
+
+    Remember your assignments.
+  \end{center}
+\end{frame}
+
+endsnippet
+
+snippet beam_fr_groups "Beamer:  Group Assignment Frame"
+\begin{frame}[c, label=group_assignments]
+  \frametitle{Group Assignments}
+
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c}
+      \hline \hline
+      \textbf{Channel} & $0 &  &  &  \\
+      \hline
+      \textbf{Manager} &  &  &  &  \\
+      \textbf{Scribe}  &  &  &  &  \\
+      \hline \hline
+      \textbf{Channel} &  &  &  &  \\
+      \hline
+      \textbf{Manager} &  &  &  &  \\
+      \textbf{Scribe}  &  &  &  &  \\
+      \hline \hline
+    \end{tabular}
+  \end{center}
+
+\end{frame}
+
+endsnippet

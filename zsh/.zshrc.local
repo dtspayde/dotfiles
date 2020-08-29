@@ -142,6 +142,7 @@ fi
 if [[ $OSTYPE==linux* ]]; then
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
     export LIBGL_ALWAYS_INDIRECT=1
-    eval `ssh-agent`
+    # eval `ssh-agent`
+    eval `keychain --eval id_rsa id_dsa`
 fi
 

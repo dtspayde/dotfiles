@@ -247,9 +247,11 @@ let g:tex_conceal='abdgm'
 " Enable folding in VimTex plugin
 let g:vimtex_fold_enabled=1
 
-" Distable latexmk continuous operation in VimTex plugin
-let g:vimtex_latexmk_continuous=0
-let g:vimtex_compiler_latexmk = {'background' : 0, 'continuous' : 0}
+" Enable latexmk continuous operation in VimTex plugin
+let g:vimtex_compiler_latexmk = {'continuous' : 1}
+
+" Use Zathura as the viewer
+let g:vimtex_view_general_viewer = 'zathura'
 
 " Change default TeX flavor for TeX files to LaTeX
 let g:tex_flavor="latex"

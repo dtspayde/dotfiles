@@ -110,6 +110,9 @@ zinit add-fpath sindresorhus/pure
 zinit light denysdovhan/spaceship-prompt
 zinit add-fpath denysdovhan/spaceship-prompt
 zinit light BrandonRoehl/zsh-clean
+zinit add-fpath BrandonRoehl/zsh-clean
+# zinit light reobin/typewritten
+# zinit add-fpath reobin/typewritten
 # zinit light isqua/bureau
 zinit ice wait'0'
 zinit light zsh-users/zsh-history-substring-search
@@ -120,6 +123,7 @@ zinit ice wait'0'
 zinit light zdharma/fast-syntax-highlighting
 zinit ice wait'0' atload'_zsh_autosuggest_start'
 zinit load zsh-users/zsh-autosuggestions
+
 
 export SPACESHIP_BATTERY_SHOW='always'
 export SPACESHIP_EXIT_CODE_SHOW='true'
@@ -141,7 +145,8 @@ fi
 # Get X server address on linux machines (WSL2 on Windows 10)
 if [[ $OSTYPE==linux* ]]; then
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    export LIBGL_ALWAYS_INDIRECT=1
+    # export LIBGL_ALWAYS_INDIRECT=1
+    export LIBGL_ALWAYS_INDIRECT=0
     # eval `ssh-agent`
     eval `keychain --eval id_rsa id_dsa`
 fi

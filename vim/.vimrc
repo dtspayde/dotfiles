@@ -57,6 +57,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-python/python-syntax'
 Plug 'tmhedberg/SimpylFold'
 
+Plug 'nathangrigg/vim-beancount'
+
 " Plug '/usr/share/doc/fzf/examples/'
 " plug '/usr/local/opt/fzf'
 

@@ -1,4 +1,0 @@
-GRML_DISPLAY_BATTERY=1
-
-# module_path+=( "/Users/spayde/.zplugin/bin/zmodules/Src" )
-# zmodload zdharma/zplugin

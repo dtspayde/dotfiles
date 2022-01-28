@@ -1,1 +1,1 @@
-fpath=(~/.zfunctions $fpath)
+source ~/.config/zsh/.zshenv

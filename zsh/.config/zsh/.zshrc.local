@@ -132,6 +132,6 @@ if [[ $OSTYPE==linux* ]]; then
     # export LIBGL_ALWAYS_INDIRECT=1
     export LIBGL_ALWAYS_INDIRECT=0
     # eval `ssh-agent`
-    eval `keychain --eval id_rsa id_dsa`
+    eval `keychain --eval id_rsa id_dsa id_ecdsa`
 fi
 

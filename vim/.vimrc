@@ -217,11 +217,14 @@ let g:UltiSnipsEditSplit="vertical"
 " Enable vim-pandoc integration with other plugins
 let g:pandoc#after#modules#enabled = ["ultisnips"]
 " let g:pandoc#after#modules#enabled = ["ultisnips", "vim-table-mode"]
-" Added on 7/6/2018 to fix problems with UltiSnip not loading properly in
-" terminal version of MacVim
-" set pythondll=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
-set pythonthreedll=/usr/local/Frameworks/Python.framework/Python
-"/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
+
+if has("gui_macvim")
+  " Added on 7/6/2018 to fix problems with UltiSnip not loading properly in
+  " terminal version of MacVim
+  " set pythondll=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python
+  set pythonthreedll=/usr/local/Frameworks/Python.framework/Python
+  "/opt/local/Library/Frameworks/Python.framework/Versions/3.6/Python
+endif
 
 
 " This may break line motion in TeX and Pandoc.  Issues with pencil plugin?

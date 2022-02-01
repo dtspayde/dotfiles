@@ -344,14 +344,14 @@ function! LetterOpen()
         let l:pdffile = substitute(bufname('%'), ".tex$", ".pdf", "")
         echom l:pdffile
 
-        execute "!open " . l:pdffile
+        execute "!zathura " . l:pdffile . " & "
 endfunction
 
 function! PDFOpen()
         let l:pdffile = substitute(bufname('%'), '.md$\|.tex$', ".pdf", "")
         echom l:pdffile
 
-        execute "!open " . l:pdffile
+        execute "!zathura " . l:pdffile
 endfunction
 
 command! -nargs=* LetterCompile call LetterCompile(<f-args>) 

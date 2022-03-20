@@ -1,6 +1,8 @@
 " Load rational defaults.vim file introduced in vim 8.
 unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+if glob("expand($VIMRUNTIME)/defaults.vim")
+  source $VIMRUNTIME/defaults.vim
+endif
 
 " Plugin Management (junegunn/vim-plug)  ---------------------------- {{{1
 
@@ -42,7 +44,7 @@ Plug 'AlessandroYorba/Alduin'
 Plug 'Konfekt/FastFold'
 Plug 'chriskempson/base16-vim'
 Plug 'whatyouhide/vim-gotham'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-janah'
 Plug 'chriskempson/base16-vim'
 Plug 'tomasr/molokai'
@@ -62,10 +64,10 @@ Plug 'nathangrigg/vim-beancount'
 " Plug '/usr/share/doc/fzf/examples/'
 " plug '/usr/local/opt/fzf'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 Plug 'nvie/vim-flake8'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -127,10 +129,10 @@ if (has("termguicolors"))
         let g:nord_underline = 1
         let g:nord_italic_comments = 1
         let g:nord_uniform_status_lines = 1
-        colo onedark
 else
-        colo base16-eighties
+        colo onedark
 endif
+colo onedark
 
 " Enable italic fonts in terminal vim (see
 " https://www.reddit.com/r/vim/comments/24g8r8/italics_in_terminal_vim_and_tmux/)
@@ -215,7 +217,7 @@ nmap ga <Plug>(EasyAlign)
 let g:UltiSnipsEditSplit="vertical"
 "
 " Enable vim-pandoc integration with other plugins
-let g:pandoc#after#modules#enabled = ["ultisnips"]
+" let g:pandoc#after#modules#enabled = ["ultisnips"]
 " let g:pandoc#after#modules#enabled = ["ultisnips", "vim-table-mode"]
 
 if has("gui_macvim")

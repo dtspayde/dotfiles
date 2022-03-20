@@ -1,7 +1,7 @@
-alias ssh_jlab='env TERM=xterm-256color ssh -Y login.jlab.org'
-alias ssh_nuc_remote='ssh -Y -L 8000:nuclear.hendrix.edu:80 nuclear-remote.hendrix.edu'
+# alias ssh_jlab='env TERM=xterm-256color ssh -Y login.jlab.org'
+# alias ssh_nuc_remote='ssh -Y -L 8000:nuclear.hendrix.edu:80 nuclear-remote.hendrix.edu'
 
-if [[ $OSTYPE==darwin* ]]; then
+if [[ $OSTYPE == darwin* || $OSNAME == darwin* ]]; then
     # alias vim='mvim -v'
     # alias vi='mvim -v'
     alias preview="open -a /System/Applications/Preview.app"
@@ -10,13 +10,16 @@ if [[ $OSTYPE==darwin* ]]; then
     export VISUAL='mvim'
 fi
 
-if [[ $OSTYPE==linux* ]]; then
+if [[ $OSTYPE == linux* || $OSNAME == linux* ]]; then
     alias -s pdf=zathura
     export EDITOR='vim'
     export VISUAL='gvim'
 fi
 
 bindkey -v
+
+# List of login/logout events (username/hostname) to monitor.  `notme` does everyone but username
+watch=(root)
 
 setopt cdable_vars
 setopt append_history
@@ -43,82 +46,91 @@ fpath+=($ZDOTDIR/plugins/zdharma-continuum/fast-syntax-highlighting)
 
 source ${ZDOTDIR}/plugins/zdharma-continuum/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ${ZDOTDIR}/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ${ZDOTDIR}/plugins/zsh-users/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+# source ${ZDOTDIR}/plugins/zsh-users/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source ${ZDOTDIR}/plugins/zsh-users/zsh-completions/zsh-completions.plugin.zsh
 source ${ZDOTDIR}/plugins/hlissner/zsh-autopair/zsh-autopair.plugin.zsh
 
 # bindkey '^[[A' history-substring-search-up
 # bindkey '^[[B' history-substring-search-down
 
-autoload -Uz surround
-zle -N delete-surround surround
-zle -N add-surround surround
-zle -N change-surround surround
-bindkey -a cs change-surround
-bindkey -a ds delete-surround
-bindkey -a ys add-surround
-bindkey -M visual S add-surround
+# if [[ $ZSH_VERSION -gt 5.3 ]]; then
+#         autoload -Uz surround
+#         zle -N delete-surround surround
+#         zle -N add-surround surround
+#         zle -N change-surround surround
+#         bindkey -a cs change-surround
+#         bindkey -a ds delete-surround
+#         bindkey -a ys add-surround
+#         bindkey -M visual S add-surround
 
-autoload -U select-quoted
-zle -N select-quoted
-for m in visual viopp; do
-  for c in {a,i}{\',\",\`}; do
-    bindkey -M $m $c select-quoted
-  done
-done
+#         autoload -U select-quoted
+#         zle -N select-quoted
+#         for m in visual viopp; do
+#           for c in {a,i}{\',\",\`}; do
+#             bindkey -M $m $c select-quoted
+#           done
+#         done
 
-autoload -U select-bracketed
-zle -N select-bracketed
-for m in visual viopp; do
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $m $c select-bracketed
-  done
-done
+#         autoload -U select-bracketed
+#         zle -N select-bracketed
+#         for m in visual viopp; do
+#           for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+#             bindkey -M $m $c select-bracketed
+#           done
+#         done
+# fi
 
-fpath+=${ZDOTDIR}/prompts/sindresorhus/pure
-fpath+=${ZDOTDIR}/prompts/spaceship-prompt/spaceship-prompt
-SPACESHIP_PROMPT_ORDER=(
-  time          # Time stampts section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  # hg            # Mercurial section (hg_branch  + hg_status)
-  # gradle        # Gradle section
-  # maven         # Maven section
-  package       # Package version
-  # node          # Node.js section
-  # ruby          # Ruby section
-  # elm           # Elm section
-  # elixir        # Elixir section
-  # xcode         # Xcode section
-  # swift         # Swift section
-  # golang        # Go section
-  # php           # PHP section
-  # rust          # Rust section
-  # haskell       # Haskell Stack section
-  # julia         # Julia section
-  docker        # Docker section
-  # aws           # Amazon Web Services section
-  # gcloud        # Google Cloud Platform section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  pyenv         # Pyenv section
-  # dotnet        # .NET section
-  # ember         # Ember.js section
-  # kubectl       # Kubectl context section
-  # terraform     # Terraform workspace section
-  # ibmcloud      # IBM Cloud section
-  exec_time     # Execution time
-  line_sep      # Line break
-  battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
+# fpath+=${ZDOTDIR}/prompts/jackharrisonsherlock/common
+fpath+=${ZDOTDIR}/prompts/BrandonRoehl/zsh-clean
+# fpath+=${ZDOTDIR}/prompts/sindresorhus/pure
+# fpath+=${ZDOTDIR}/prompts/spaceship-prompt/spaceship-prompt
+# SPACESHIP_PROMPT_ORDER=(
+#   time          # Time stampts section
+#   user          # Username section
+#   dir           # Current directory section
+#   host          # Hostname section
+#   git           # Git section (git_branch + git_status)
+#   # hg            # Mercurial section (hg_branch  + hg_status)
+#   # gradle        # Gradle section
+#   # maven         # Maven section
+#   package       # Package version
+#   # node          # Node.js section
+#   # ruby          # Ruby section
+#   # elm           # Elm section
+#   # elixir        # Elixir section
+#   # xcode         # Xcode section
+#   # swift         # Swift section
+#   # golang        # Go section
+#   # php           # PHP section
+#   # rust          # Rust section
+#   # haskell       # Haskell Stack section
+#   # julia         # Julia section
+#   docker        # Docker section
+#   # aws           # Amazon Web Services section
+#   # gcloud        # Google Cloud Platform section
+#   venv          # virtualenv section
+#   conda         # conda virtualenv section
+#   pyenv         # Pyenv section
+#   # dotnet        # .NET section
+#   # ember         # Ember.js section
+#   # kubectl       # Kubectl context section
+#   # terraform     # Terraform workspace section
+#   # ibmcloud      # IBM Cloud section
+#   exec_time     # Execution time
+#   line_sep      # Line break
+#   battery       # Battery level and status
+#   vi_mode       # Vi-mode indicator
+#   jobs          # Background jobs indicator
+#   exit_code     # Exit code section
+#   char          # Prompt character
+# )
 promptinit
-prompt spaceship
+# prompt spaceship
+# prompt pure
+zstyle ':prompt:grml:left:setup' items user at host path vcs newline time percent
+zstyle ':prompt:grml:right:setup' items rc
+prompt grml
+# source ~/.config/zsh/prompts/agkozak/polyglot/polyglot.sh
 
 # for ZSH_FILE in "${ZDOTDIR:-$HOME}"/plugins/*.zsh(N); do
 #         print ${ZSH_FILE}
@@ -127,11 +139,15 @@ prompt spaceship
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Get X server address on linux machines (WSL2 on Windows 10)
-if [[ $OSTYPE==linux* ]]; then
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    # export LIBGL_ALWAYS_INDIRECT=1
-    export LIBGL_ALWAYS_INDIRECT=0
-    # eval `ssh-agent`
-    eval `keychain --eval id_rsa id_dsa id_ecdsa`
+if [[ $OSTYPE == linux* ]]; then
+    # export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    # # export LIBGL_ALWAYS_INDIRECT=1
+    # export LIBGL_ALWAYS_INDIRECT=0
+    # # eval `ssh-agent`
+    eval `keychain --eval id_rsa id_dsa id_ecdsa id_ed25519`
 fi
 
+if [[ $HOSTNAME == *farm*.jlab.org ]]; then
+    export LD_LIBRARY_PATH=/apps/boost/lib:${LD_LIBRARY_PATH}
+    # source ${HOME}/bin/softenv.sh 2.4
+fi

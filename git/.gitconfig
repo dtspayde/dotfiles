@@ -3,7 +3,7 @@
 	email = spayde@hendrix.edu
 [core]
 	editor = vim
-	excludesfile = /Users/spayde/.gitignore_global
+	excludesfile = ${HOME}/.gitignore_global
 [push]
 	default = simple
 [merge]

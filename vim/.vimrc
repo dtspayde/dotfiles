@@ -64,9 +64,9 @@ Plug 'nathangrigg/vim-beancount'
 " Plug '/usr/share/doc/fzf/examples/'
 " plug '/usr/local/opt/fzf'
 
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
-Plug 'nvie/vim-flake8'
+Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'nvie/vim-flake8'
 " Plug 'w0rp/ale'
 
 call plug#end()

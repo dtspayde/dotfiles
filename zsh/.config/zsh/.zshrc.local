@@ -151,9 +151,9 @@ if [[ $OSTYPE == linux* ]]; then
     eval `keychain --eval id_rsa id_dsa id_ecdsa id_ed25519`
 fi
 
-if [[ -v WSL_DISTRO_NAME ]]; then
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-fi
+# if [[ -v WSL_DISTRO_NAME ]]; then
+#     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+# fi
 
 if [[ $HOSTNAME == *farm*.jlab.org ]]; then
     export LD_LIBRARY_PATH=/apps/boost/lib:${LD_LIBRARY_PATH}

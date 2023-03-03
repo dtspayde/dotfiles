@@ -260,7 +260,7 @@ let g:vimtex_fold_enabled=1
 let g:vimtex_compiler_latexmk = {'continuous' : 1}
 
 " Use Zathura as the viewer
-let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_general_viewer = 'evince'
 
 " Change default TeX flavor for TeX files to LaTeX
 let g:tex_flavor="latex"

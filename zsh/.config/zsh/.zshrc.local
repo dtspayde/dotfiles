@@ -1,5 +1,6 @@
 # alias ssh_jlab='env TERM=xterm-256color ssh -Y login.jlab.org'
 # alias ssh_nuc_remote='ssh -Y -L 8000:nuclear.hendrix.edu:80 nuclear-remote.hendrix.edu'
+alias sshfs_jlab="sshfs -o idmap=user -o ServerAliveInterval=15 ifarm:/work/halla/moller12gev/spayde/dose_study /home/spayde/jlab/work_dose_study"
 
 if [[ $OSTYPE == darwin* || $OSNAME == darwin* ]]; then
     # alias vim='mvim -v'

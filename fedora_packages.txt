@@ -11,8 +11,6 @@ git
 git-delta
 glances
 keychain
-pandoc
-pandoc-pdf
 pdfarranger
 procs
 python3-pip
@@ -24,5 +22,6 @@ tmux
 toolbox
 vim-enhanced
 wget
+xdg-utils
 zsh
 zsh-autosuggestions

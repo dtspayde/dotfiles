@@ -28,15 +28,6 @@
 					"PackageIdentifier" : "Microsoft.VisualStudioCode"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.Office"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.OneDrive"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.Teams"
-				},
-				{
 					"PackageIdentifier" : "Notepad++.Notepad++"
 				},
 				{
@@ -68,6 +59,21 @@
 				},
 				{
 					"PackageIdentifier" : "JohnMacFarlane.Pandoc"
+				},
+				{
+					"PackageIdentifier" : "Helix.Helix"
+				},
+				{
+					"PackageIdentifier" : "eza-community.eza"
+				},
+				{
+					"PackageIdentifier" : "jftuga.less"
+				},
+				{
+					"PackageIdentifier" : "sharkdp.bat"
+				},
+				{
+					"PackageIdentifier" : "Starship.Starship"
 				},
 				{
 					"PackageIdentifier" : "RedHat.Podman"

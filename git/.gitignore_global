@@ -64,3 +64,6 @@ Session.vim
 
 ## SVN-Specific
 .svn/
+
+# WSL File Metadata (?)
+*.Identifier

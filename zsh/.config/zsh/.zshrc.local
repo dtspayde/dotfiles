@@ -159,11 +159,14 @@ fi
 path+=($HOME/.local/bin)
 export path
 
-export PYENV_ROOT=$HOME/.pyenv
-command -v pyenv >/dev/null || export PATH=${PYENV_ROOT}/bin:${PATH}
-eval "$(pyenv init -)"
+# expor PYENV_ROOT=$HOME/.pyenv
+# command -v pyenv >/dev/null || export PATH=${PYENV_ROOT}/bin:${PATH}
+# eval "$(pyenv init -)"
 
 if [[ $HOSTNAME == *farm*.jlab.org ]]; then
     export LD_LIBRARY_PATH=/apps/boost/lib:${LD_LIBRARY_PATH}
     # source ${HOME}/bin/softenv.sh 2.4
 fi
+
+prompt off
+eval "$(starship init zsh)"

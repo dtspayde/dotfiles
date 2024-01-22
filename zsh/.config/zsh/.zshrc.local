@@ -168,5 +168,12 @@ if [[ $HOSTNAME == *farm*.jlab.org ]]; then
     # source ${HOME}/bin/softenv.sh 2.4
 fi
 
+if [[ $(whence bat) ]]; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
+    alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+fi
+
+
 prompt off
 eval "$(starship init zsh)"

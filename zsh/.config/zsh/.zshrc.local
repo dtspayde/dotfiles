@@ -172,6 +172,7 @@ if [[ $(whence bat) ]]; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
     export MANROFFOPT="-c"
     alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+    export BAT_THEME="Coldark-Dark"
 fi
 
 if [[ $(whence fzf) ]]; then

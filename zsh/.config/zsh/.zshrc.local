@@ -194,6 +194,7 @@ if [[ $(whence fzf) ]]; then
     if [[ $(whence bat) ]]; then
         export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
     fi
+    [[ -f /usr/share/fzf/shell/key-bindings.zsh ]] && source /usr/share/fzf/shell/key-bindings.zsh
 fi
 
 prompt off

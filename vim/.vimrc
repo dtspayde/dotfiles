@@ -70,6 +70,12 @@ Plug 'junegunn/fzf.vim'
 " Plug 'nvie/vim-flake8'
 " Plug 'w0rp/ale'
 
+Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+if !has('nvim')
+  Plug 'rhysd/vim-healthcheck'
+endif
+
 call plug#end()
 
 " Basic editor settings ---------------------------- {{{1
@@ -386,3 +392,34 @@ command! -nargs=0 PDFOpen call PDFOpen()
 "set statusline+=Col:\ %3.c\ 
 "set statusline+=Line:\ %4.l/%-4.L
 "set statusline+=%4.P
+"
+if executable('pylsp')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+if executable('ruff')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'ruff',
+        \ 'cmd': {server_info->['ruff', 'server', '--preview']},
+        \ 'allowlist': ['python'],
+        \ 'workspace_config': {},
+        \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    " add your keybindings here (see https://github.com/prabirshrestha/vim-lsp?tab=readme-ov-file#registering-servers)
+
+    let l:capabilities = lsp#get_server_capabilities('ruff')
+    if !empty(l:capabilities)
+      let l:capabilities.hoverProvider = v:false
+    endif
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END

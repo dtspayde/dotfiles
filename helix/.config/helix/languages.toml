@@ -1,0 +1,13 @@
+[language-server.ruff]
+command = "ruff"
+args = ["server", "--preview"]
+
+[[language]]
+name = "python"
+formatter = { command = "ruff", args = ["format"] }
+language-servers = [ "pylsp", "ruff" ]
+
+[[language]]
+name = "latex"
+file-types = ["tex","sty"]
+comment-token = "%"

@@ -13,8 +13,8 @@ fi
 
 if [[ $OSTYPE == linux* || $OSNAME == linux* ]]; then
     alias -s pdf=zathura
-    export EDITOR='vim'
-    export VISUAL='gvim'
+    export EDITOR='nvim'
+    export VISUAL='nvim'
 fi
 
 bindkey -v
@@ -142,14 +142,14 @@ fi
 #         print ${ZSH_FILE}
 #     source "${ZSH_FILE}"
 # done
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Get X server address on linux machines (WSL2 on Windows 10)
 if [[ $OSTYPE == linux* ]]; then
     # # export LIBGL_ALWAYS_INDIRECT=1
     # export LIBGL_ALWAYS_INDIRECT=0
     # # eval `ssh-agent`
-    eval `keychain --eval id_rsa id_dsa id_ecdsa id_ed25519`
+    # eval `keychain --eval id_rsa id_dsa id_ecdsa id_ed25519`
 fi
 
 # if [[ -v WSL_DISTRO_NAME ]]; then
@@ -178,8 +178,10 @@ fi
 if [[ $(whence fzf) ]]; then
     # Use 'fd' for default and completion commands, rather than 'find'
     if [[ $(whence fd) ]]; then
+        # export FZF_DEFAULT_COMMAND='fd'
         export FZF_DEFAULT_COMMAND='fd --hidden --type file --type directory'
-        export FZF_ALT_C_COMMAND=$FZF_DEFAULT_COMMAND
+        export FZF_DEFAULT_OPTS='--tmux 100%,50% --style full'
+        export FZF_ALT_C_COMMAND='fd --hidden --type directory'
         export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
         _fzf_compgen_path() {
@@ -194,8 +196,23 @@ if [[ $(whence fzf) ]]; then
     if [[ $(whence bat) ]]; then
         export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
     fi
-    [[ -f /usr/share/fzf/shell/key-bindings.zsh ]] && source /usr/share/fzf/shell/key-bindings.zsh
+    # [[ -f /usr/share/fzf/shell/key-bindings.zsh ]] && source /usr/share/fzf/shell/key-bindings.zsh
+    source <(fzf --zsh)
+fi
+
+# if [[ $(whence rg) ]]; then
+#     source <(rg --generate complete-zsh)
+# fi
+
+if [[ $(whence uv) ]]; then
+    # eval "$(uv generate-shell-completion zsh)"
+    # eval "$(uvx --generate-shell-completion zsh)"
 fi
 
 prompt off
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+export PYTHONSTARTUP=~/.config/python/pythonstartup.py
+alias ipython='uvx --with rich ipython'
+

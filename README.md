@@ -22,6 +22,7 @@ From <https://grml.org/zsh/>
 + dnf install \$(cat fedora_packages.txt)
     + dnf repoquery --userinstalled
 + mkdir ~/.local/bin
++ mkdir -p ~/.local/bin; curl -sS https://starship.rs/install.sh | sh
 + git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     + tmux source ~/.tmux.conf
     + Ctrl-a I to install plugins

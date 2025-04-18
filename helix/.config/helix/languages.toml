@@ -11,3 +11,9 @@ language-servers = [ "pylsp", "ruff" ]
 name = "latex"
 file-types = ["tex","sty"]
 comment-token = "%"
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
+auto-format = true

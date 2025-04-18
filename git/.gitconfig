@@ -2,7 +2,7 @@
 	name = Damon Spayde
 	email = spayde@hendrix.edu
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ${HOME}/.gitignore_global
         pager = delta
 [push]

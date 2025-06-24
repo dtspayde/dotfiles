@@ -159,9 +159,11 @@ fi
 path+=($HOME/.local/bin)
 export path
 
-export PYENV_ROOT=$HOME/.pyenv
-command -v pyenv >/dev/null || export PATH=${PYENV_ROOT}/bin:${PATH}
-eval "$(pyenv init -)"
+if [[ $(whence pyenv) ]]; then
+    export PYENV_ROOT=$HOME/.pyenv
+    command -v pyenv >/dev/null || export PATH=${PYENV_ROOT}/bin:${PATH}
+    eval "$(pyenv init -)"
+fi
 
 if [[ $HOSTNAME == *farm*.jlab.org ]]; then
     export LD_LIBRARY_PATH=/apps/boost/lib:${LD_LIBRARY_PATH}
@@ -215,4 +217,3 @@ eval "$(zoxide init zsh)"
 
 export PYTHONSTARTUP=~/.config/python/pythonstartup.py
 alias ipython='uvx --with rich ipython'
-

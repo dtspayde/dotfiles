@@ -50,6 +50,7 @@
         features = decorations
         syntax-theme = OneHalfDark
         keep-plus-minus-markers = true
+        side-by-side = true
 
 [delta "interactive"]
         keep-plus-minus-markers = true

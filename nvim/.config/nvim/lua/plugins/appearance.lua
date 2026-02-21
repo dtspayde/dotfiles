@@ -45,7 +45,9 @@ return {
       })
 
       -- Improved notifications
-      require('mini.notify').setup()
+      require('mini.notify').setup({
+        lsp_progress = { enable = true }
+      })
       vim.notify = require('mini.notify').make_notify()
 
       -- Better defaults, mappings, and autocommands

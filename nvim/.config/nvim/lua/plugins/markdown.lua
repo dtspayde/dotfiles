@@ -7,7 +7,7 @@ return {
     },
     ft = { 'markdown', },
     opts = {
-      preset = 'obsidian',
+      preset = 'none',
       completions = { blink = { enabled = true } },
     },
   },
